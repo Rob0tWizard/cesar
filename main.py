@@ -14,27 +14,34 @@ if lang == 'ru' or lang == "ру":
     for item in message:
         try:
             place = alphabet_ru.index(item)
-            if place + step > len(alphabet_ru):
+            if place + step >= len(alphabet_ru):
                 new_place = (place + step) % int(len(alphabet_ru))
+                result += alphabet_ru[new_place]
             else:
                 new_place = place + step
-                result += item
+                result += alphabet_ru[new_place]
         except ValueError:
             result += item
 
-        result += alphabet_ru[new_place]
+        #result += alphabet_ru[new_place]
 
-elif lang == "en":
+elif lang == "en" or lang == 'eng':
+
     for item in message:
         try:
             place = alphabet_en.index(item)
             if place + step > len(alphabet_en):
-                new_place = (place + step) % int(len(alphabet_en))
+                new_place = int(place + step) % int(len(alphabet_en))
+                result += alphabet_en[new_place]
             else:
                 new_place = place + step
+                result += alphabet_en[new_place]
         except ValueError:
             result += item
 
-        result += alphabet_en[new_place]
+else:
+    print("Ошибка ввода")
+
+
 
 print(result)
